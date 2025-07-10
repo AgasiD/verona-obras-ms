@@ -101,24 +101,32 @@ export class ObrasService {
       let obras = (await this.obrasRepository.obtenerObras())!;
       let pedidos: Pedido[] = await this.getPedidos()
       let obrasResponse: any[] = [];
+      let usuarios = await this.getUsuarios();
       let usuario = await this.getUsuario(usuarioId);
 
       if (usuario.role == 2) pedidos = pedidos.filter(pedido => pedido.idUsuario == usuarioId);
 
       obras.forEach(obra => {
-        let ped: any[] = [];
+        let aux_pedidos = new Array<Pedido>();
         if (obra.pedidos.length > 0) {
           let pedidosObra = pedidos.filter(pedido => pedido.idObra.includes(obra.id!) && pedido.estado < 5)
-          ped = pedidosObra.map(ped => new Pedido(ped.id, { ...ped, imagenId: ped.imagenId, }));
+
+          for (let a of pedidosObra) {
+            a.usuario = usuarios.find(u => u.id == a.idUsuario);
+            let pedido = new Pedido(a.id, { ...a, imagenId: a.imagenId, })
+            aux_pedidos.push(pedido);
+            aux_pedidos;
+          }
+          
         }
 
         let aux = {
           "nombre": obra.nombre,
           "barrio": obra.barrio,
           "obraId": obra.id,
-          "pedidos": ped
+          "pedidos": aux_pedidos
         }
-        if (ped.length > 0) obrasResponse.push(aux);
+        if (aux_pedidos.length > 0) obrasResponse.push(aux);
       });
 
       return obrasResponse;

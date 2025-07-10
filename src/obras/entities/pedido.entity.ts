@@ -44,7 +44,7 @@ export class Pedido {
             estado = ESTADOS.SIN_ASIGNAR,
             entregaExterna = false,
             nombreUsuario = '',
-        usuario = '' }) {
+        usuario = null }) {
         this.id = id || '';
         this.titulo = titulo || 'Sin título'
         this.idUsuario = idUsuario;
