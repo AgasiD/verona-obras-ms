@@ -105,7 +105,6 @@ export class ObrasService {
       let usuario = await this.getUsuario(usuarioId);
 
       if (usuario.role == 2) pedidos = pedidos.filter(pedido => pedido.idUsuario == usuarioId);
-
       obras.forEach(obra => {
         let aux_pedidos = new Array<Pedido>();
         if (obra.pedidos.length > 0) {
