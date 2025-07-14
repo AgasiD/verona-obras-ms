@@ -284,7 +284,9 @@ export class ObrasService {
       let obra = (await this.obrasRepository.obtenerObra(obraId))!;
       obra.actualizarOrdenTareas(etapaId, subetapaId, tareas);
       await this.obrasRepository.modificarObra(obra);
-      return 'OK';
+      return {
+        success: true,
+      };
     } catch (err) {
       handlerError(err)
     }
