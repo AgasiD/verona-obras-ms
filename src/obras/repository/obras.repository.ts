@@ -19,9 +19,9 @@ export class ObrasRepository {
     async obtenerObras() {
         try {
 
-            if (this.obras.length == 0) {
+            // if (this.obras.length == 0) {
                 await this.cargarObras();
-            }
+            // }
 
             return this.obras
         } catch (err) {
