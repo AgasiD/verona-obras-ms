@@ -358,7 +358,7 @@ export class ObrasService {
       case 3: //Propietarios solo los que este agregado
         copyObras.forEach(obra => {
           let team = obra.propietarios?.map(e => e.id)
-          if (team.includes(user.id) || team.includes(user.dni)) {
+          if (team?.includes(user.id) || team?.includes(user.dni)) {
             obrasAux.push(obra);
           }
         })
