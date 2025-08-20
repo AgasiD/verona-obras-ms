@@ -24,7 +24,7 @@ export function handlerError(err: any) {
       exception_info = { status: 403, message: err.statusText ?? err.message }
       break;
     default:
-      exception_info = { status: 500, message: `Estado ${err.status} - ${err.statusText}`}  
+      exception_info = { status: 500, message: `Estado ${err.status} - ${err.statusText} - ${err.toString()}`}  
   }
 
   throw new RpcException(exception_info)

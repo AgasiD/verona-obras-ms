@@ -97,6 +97,7 @@ export class ObrasService {
   }
 
   async obtenerPedidosPorObra(usuarioId: string) {
+    
     try {
       let obras = (await this.obrasRepository.obtenerObras())!;
       let pedidos: Pedido[] = await this.getPedidos()
