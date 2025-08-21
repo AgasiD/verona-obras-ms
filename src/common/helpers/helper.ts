@@ -28,7 +28,6 @@ export function handlerError(err: any) {
   }
 
   throw new RpcException(exception_info)
-
 }
 
 
